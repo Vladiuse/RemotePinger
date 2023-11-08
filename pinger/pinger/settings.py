@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-qm$!v!z+f#_sv#_z)sukimn&^jf*t7d7n0+pbr3d+$75^=3mct
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'ping.vim-store.ru']
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
@@ -123,6 +123,7 @@ TIME_ZONE = 'Europe/Minsk'
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = '/home/v/vladiuse/ping.vim-store.ru/public_html/static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
