@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from datetime import timedelta
+from django.core.validators import RegexValidator
 
 class DS(models.Model):
     OS = (
@@ -57,3 +58,19 @@ class DS(models.Model):
             else:
                 return WORK
         return '-'
+
+class Settings(models.Model):
+    name = models.CharField(
+        primary_key=True,
+        max_length=50,
+        validators=[RegexValidator(regex='^[a-zA-Z_]+$')],
+    )
+    desc = models.CharField(max_length=255, blank=True)
+    value = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name = 'Settings'
+        verbose_name_plural = 'Settings'
+
+    def __str__(self):
+        return self.name
