@@ -11,10 +11,15 @@ def index(request):
     show_site_not_load_block_time =  Settings.objects.get(pk='show_site_not_load_block_time')
     main_page_reload_time = Settings.objects.get(pk='main_page_reload_time')
     dss = DS.objects.all()
+    active_count = 0
+    for ds in dss:
+        if ds.status()['text'] == 'Работает':
+            active_count += 1
     content = {
         'dss': dss,
         'show_site_not_load_block_time': show_site_not_load_block_time,
         'main_page_reload_time': main_page_reload_time,
+        'active_count': active_count,
 
     }
     return render(request, 'remote_pc/index.html', content)
