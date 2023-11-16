@@ -18,7 +18,7 @@ class DS(models.Model):
     last_activity = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return f'<{self.pk}> {self.ip} ({self.core}-core {self.ram}GB RAM) {self.os}'
+        return f'<{self.name}> {self.ip} {self.os}'
 
     class Meta:
         verbose_name = 'DS'

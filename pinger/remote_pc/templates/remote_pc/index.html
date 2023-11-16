@@ -35,10 +35,11 @@
       <thead>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">Name</th>
+
           <th scope="col">IP</th>
           <th scope="col">OS</th>
           <th scope="col">Param</th>
+                    <th scope="col">Name</th>
           <th scope="col">Status</th>
           <th scope="col">Last ping</th>
           <th scope="col">Past</th>
@@ -48,11 +49,13 @@
         {%for ds in dss%}
         <tr>
           <td>{{ds.pk}}</td>
-          <td>{{ds.name}}</td>
+
           <td>{{ds.ip}}</td>
           <td>{{ds.os}}</td>
           <td>{{ds.code}} {{ds.ram}}GB</td>
-
+          <td>
+            <h4>{{ds.name}}</h4>
+          </td>
           <td>
             <button type="button" class="btn btn-{{ds.status.color}}">{{ds.status.text}}</button>
           </td>
