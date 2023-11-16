@@ -25,6 +25,9 @@
     width: 20%;
     font-size: 15em;
   }
+  .status{
+  width: 100%;
+  }
 </style>
 <body>
   <div class="" id="timeout" style="display: none;">
@@ -57,7 +60,7 @@
             <h4>{{ds.name}}</h4>
           </td>
           <td>
-            <button type="button" class="btn btn-{{ds.status.color}}">{{ds.status.text}}</button>
+            <button type="button" class="status btn btn-{{ds.status.color}}">{{ds.status.text}}</button>
           </td>
           <td>
             {{ds.last_activity|date:"m-d H:i:s"}}
