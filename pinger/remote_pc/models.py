@@ -35,8 +35,6 @@ class DS(models.Model):
         return ''
 
     def status(self):
-        MAX_LAST_PING = timedelta(minutes=4)
-        MAY_BE_WORK_TIME = timedelta(minutes=2)
         WORK = {
             'text': 'Работает',
             'color': 'success',
@@ -47,17 +45,19 @@ class DS(models.Model):
         }
         NOT_WORK = {
             'text': 'Не работает',
-            'color': 'secondary',
+            'color': 'danger',
         }
         NOT_ACTIVE = {
-            'text': '-',
-            'color': '-',
+            'text': 'Не активен',
+            'color': 'secondary',
         }
         if self.last_activity:
             delta = timezone.now() - self.last_activity
-            if delta > MAX_LAST_PING:
+            if delta >  timedelta(minutes=60):
+                return NOT_ACTIVE
+            elif delta > timedelta(minutes=6):
                 return NOT_WORK
-            elif delta > MAY_BE_WORK_TIME:
+            elif delta > timedelta(minutes=3):
                 return MAYBE_WORK
             else:
                 return WORK
