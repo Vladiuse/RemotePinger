@@ -32,6 +32,17 @@
   .status{
   width: 100%;
   }
+  .os i{
+    font-size: 1.7em;
+    margin-right: 5px;
+  }
+  .os{
+    display: flex;
+    align-items: center;
+  }
+  .fa-windows{
+    color:#1f8ae8;
+  }
 </style>
 <body>
   <div class="" id="timeout" style="display: none;">
@@ -58,7 +69,17 @@
           <td>{{ds.pk}}</td>
 
           <td>{{ds.ip}}</td>
-          <td>{{ds.os}}</td>
+          <td >
+            <div class="os">
+              {% if ds.os == 'Linux'%}
+              <i class="fa-brands fa-linux"></i>
+              {% endif%}
+              {% if ds.os == 'Windows'%}
+              <i class="fa-brands fa-windows"></i>
+              {% endif%}
+            {{ds.os}}
+            </div>
+          </td>
           <td>{{ds.code}} {{ds.ram}}GB</td>
           <td>
             <h4>{{ds.name}}</h4>

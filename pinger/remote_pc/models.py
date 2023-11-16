@@ -23,6 +23,7 @@ class DS(models.Model):
     class Meta:
         verbose_name = 'DS'
         verbose_name_plural = 'DS'
+        ordering = ['name']
 
     def ping(self):
         self.last_activity = timezone.now()
