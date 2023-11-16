@@ -12,14 +12,18 @@ def index(request):
     main_page_reload_time = Settings.objects.get(pk='main_page_reload_time')
     dss = DS.objects.all()
     active_count = 0
+    is_not_word_exists = False
     for ds in dss:
         if ds.status()['text'] == 'Работает':
             active_count += 1
+        if ds.status()['text'] == 'Не работает':
+            is_not_word_exists = True
     content = {
         'dss': dss,
         'show_site_not_load_block_time': show_site_not_load_block_time,
         'main_page_reload_time': main_page_reload_time,
         'active_count': active_count,
+        'is_not_word_exists': is_not_word_exists,
 
     }
     return render(request, 'remote_pc/index.html', content)

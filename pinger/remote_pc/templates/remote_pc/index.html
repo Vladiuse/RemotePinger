@@ -1,7 +1,11 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+  {% if is_not_word_exists%}
+  <link rel="icon" type="image/x-icon" href="{% static 'red_circle.png' %}">
+  {%endif%}
   <meta charset="UTF-8">
   <title>DS - {{active_count}}/{{dss|length}}</title>
   <meta http-equiv="refresh" content="{{main_page_reload_time.value}}" />
