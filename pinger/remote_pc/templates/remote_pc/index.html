@@ -43,17 +43,19 @@
   .fa-windows{
     color:#1f8ae8;
   }
+  p {
+  margin-bottom: 0rem;
+}
+
 </style>
 <body>
   <div class="" id="timeout" style="display: none;">
     <i class="fa-solid fa-rotate-right"></i>
   </div>
   <div class="container">
-    <table class="table">
-      <thead>
+    <table class="table align-middle">
+      <thead class="table-primary">
         <tr>
-          <th scope="col">ID</th>
-
           <th scope="col">IP</th>
           <th scope="col">OS</th>
           <th scope="col">Param</th>
@@ -66,9 +68,10 @@
       <tbody>
         {%for ds in dss%}
         <tr>
-          <td>{{ds.pk}}</td>
-
-          <td>{{ds.ip}}</td>
+          <td>
+            <p>{{ds.ip}}</p>
+            <p>{{ds.login}}@{{ds.password}}</p>
+          </td>
           <td >
             <div class="os">
               {% if ds.os == 'Linux'%}
