@@ -56,9 +56,9 @@ class DS(models.Model):
             delta = timezone.now() - self.last_activity
             if delta >  timedelta(minutes=45):
                 return NOT_ACTIVE
-            elif delta > timedelta(minutes=6):
+            elif delta > timedelta(minutes=10):
                 return NOT_WORK
-            elif delta > timedelta(minutes=3):
+            elif delta > timedelta(minutes=5):
                 return MAYBE_WORK
             else:
                 return WORK
