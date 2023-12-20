@@ -9,6 +9,7 @@ class DS(models.Model):
         ('Linux', 'Linux'),
     )
     name = models.CharField(max_length=50, blank=True, unique=True)
+    full_name = models.CharField(max_length=50, blank=True)
     ip = models.GenericIPAddressField()
     login = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
@@ -18,7 +19,7 @@ class DS(models.Model):
     last_activity = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return f'<{self.name}> {self.ip} {self.os}'
+        return f'<{self.name}> {self.ip} {self.full_name}'
 
     class Meta:
         verbose_name = 'DS'
