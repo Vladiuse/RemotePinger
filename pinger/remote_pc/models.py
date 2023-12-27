@@ -17,6 +17,7 @@ class DS(models.Model):
     ram = models.PositiveIntegerField()
     os = models.CharField(max_length=50,choices=OS)
     last_activity = models.DateTimeField(blank=True, null=True)
+    use_in_pars = models.BooleanField(default=True)
 
     def __str__(self):
         return f'<{self.name}> {self.ip} {self.full_name}'

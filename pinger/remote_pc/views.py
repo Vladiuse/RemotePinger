@@ -10,7 +10,7 @@ def index(request):
     """Страница со статусами работы"""
     show_site_not_load_block_time =  Settings.objects.get(pk='show_site_not_load_block_time')
     main_page_reload_time = Settings.objects.get(pk='main_page_reload_time')
-    dss = DS.objects.all()
+    dss = DS.objects.filter(use_in_pars=True)
     active_count = 0
     is_not_word_exists = False
     for ds in dss:
