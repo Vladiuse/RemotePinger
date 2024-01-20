@@ -46,11 +46,165 @@
   p {
   margin-bottom: 0rem;
 }
+.msg {
+  margin: 0 10px;
+  padding: 0;
+  display: inline-block;
+  background: rgb(21, 180, 21);
+  box-shadow: 0 0 10px rgb(21, 180, 21);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  animation-name: blink;
+  animation-duration: .4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+}
 
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+</style>
+<style>
+
+.server{
+  width: 110px;
+  height: 30px;
+  background: #3a3a3a;
+  border-radius: 1px;
+}
+
+.server ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.server ul li{
+  width: 8px;
+  height: 8px;
+  float: left;
+  margin-left: 10px;
+  margin-top: 10px;
+  background: rgba(149,244,118,0.6);
+}
+
+
+.server ul li:first-child{
+  -webkit-animation: pattern1 0.14s linear infinite;
+}
+
+.server ul li:nth-child(2){
+  -webkit-animation: pattern1 0.14s 0.02s linear infinite;
+}
+
+.server ul li:last-child{
+  -webkit-animation: pattern1 0.14s 0.05s linear infinite;
+}
+
+@-webkit-keyframes pattern1{
+  0%{
+    background: rgba(149,244,118,0.6);
+  }
+  100%{
+    background: rgba(149,244,118,1);
+  }
+}
+
+.warning ul li{
+
+  background: rgba(245,190,0,0.6);
+}
+
+.danger ul li{
+  background: rgba(236,69,62,0.6);
+}
+
+.secondary ul li{
+    background: rgba(129, 129, 129, 0.6);
+}
+
+.warning ul li:first-child{
+  -webkit-animation: pattern2 0.14s linear infinite;
+}
+
+.warning ul li:nth-child(2){
+  -webkit-animation: pattern2 0.14s 0.02s linear infinite;
+}
+
+.warning ul li:last-child{
+  -webkit-animation: pattern2 0.14s 0.05s linear infinite;
+}
+
+@-webkit-keyframes pattern2{
+  0%{
+    background: rgba(245,190,0,0.6);
+  }
+  100%{
+    background: rgba(245,190,0,1);
+  }
+}
+
+
+
+.danger ul li:first-child{
+  -webkit-animation: pattern3 0.9s linear infinite;
+}
+
+.danger ul li:nth-child(2){
+  -webkit-animation: pattern3 0.9s linear infinite;
+}
+
+.danger ul li:last-child{
+  -webkit-animation: pattern3 0.9s linear infinite;
+}
+
+@-webkit-keyframes pattern3{
+  0%{
+    background: rgba(236,69,62,0.6);
+  }
+  80%{
+    background: rgba(236,69,62,0.6);
+  }
+  100%{
+    background: rgba(236,69,62,1);
+  }
+}
+.secondary ul li:first-child{
+  -webkit-animation: pattern4 0.9s linear infinite;
+}
+
+.secondary ul li:nth-child(2){
+  -webkit-animation: pattern4 0.9s linear infinite;
+}
+
+.secondary ul li:last-child{
+  -webkit-animation: pattern4 0.9s linear infinite;
+}
+
+
+@-webkit-keyframes pattern4{
+  0%{
+    background: rgba(143, 143, 143, 0.6);
+  }
+  100%{
+    background: rgba(143, 143, 143, 0.6);
+  }
+}
 </style>
 <body>
   <div class="" id="timeout" style="display: none;">
     <i class="fa-solid fa-rotate-right"></i>
+  </div>
+  <div class="container">
+    <h4>Работет: {%if active_count%}<span class="msg"></span>{%endif%}{{active_count}}/{{dss|length}}</h4>
   </div>
   <div class="container">
     <table class="table align-middle">
@@ -67,6 +221,7 @@
       </thead>
       <tbody>
         {%for ds in dss%}
+        
         <tr>
           <td>
             <p>{{ds.login}}@{{ds.ip}}</p>
@@ -88,7 +243,14 @@
             <h4>{{ds.name}}</h4>
           </td>
           <td>
-            <button type="button" class="status btn btn-{{ds.status.color}}">{{ds.status.text}}</button>
+            <div class="server {{ds.status.color}}">
+              <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
+            <!-- <button type="button" class="status btn btn-{{ds.status.color}}">{{ds.status.text}}</button> -->
           </td>
           <td>
             {{ds.last_activity|date:"m-d H:i:s"}}
@@ -97,6 +259,7 @@
             {{ds.past}}
           </td>
         </tr>
+        
         {%endfor%}
       </tbody>
     </table>

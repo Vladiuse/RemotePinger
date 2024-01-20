@@ -8,6 +8,9 @@ class DS(models.Model):
         ('Windows', 'Windows'),
         ('Linux', 'Linux'),
     )
+    WORK = 'Работает'
+    NOT_WORK = 'Не работает'
+    NOT_ACTIVE = 'Не активен'
     name = models.CharField(max_length=50, blank=True, unique=True)
     full_name = models.CharField(max_length=50, blank=True)
     ip = models.GenericIPAddressField()
@@ -37,21 +40,22 @@ class DS(models.Model):
             return delta
         return ''
 
+    @property
     def status(self):
         WORK = {
-            'text': 'Работает',
+            'text': DS.WORK,
             'color': 'success',
         }
         MAYBE_WORK = {
-            'text': 'Работает',
+            'text': DS.WORK,
             'color': 'warning',
         }
         NOT_WORK = {
-            'text': 'Не работает',
+            'text': DS.NOT_WORK,
             'color': 'danger',
         }
         NOT_ACTIVE = {
-            'text': 'Не активен',
+            'text': DS.NOT_ACTIVE,
             'color': 'secondary',
         }
         if self.last_activity:
